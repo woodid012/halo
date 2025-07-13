@@ -566,18 +566,18 @@ export default function ContractList({
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-gray-50 border-b border-gray-200">
-                <th className="text-left p-4 font-semibold text-gray-700">Name</th>
+                <th className="text-left p-4 font-semibold text-gray-700 w-24">Actions</th>
+                <th className="text-left p-4 font-semibold text-gray-700 w-40">Name</th>
                 <th className="text-left p-4 font-semibold text-gray-700">Direction</th>
-                <th className="text-left p-4 font-semibold text-gray-700">Type</th>
-                <th className="text-left p-4 font-semibold text-gray-700">Category</th>
-                <th className="text-left p-4 font-semibold text-gray-700">State</th>
+                <th className="text-left p-4 font-semibold text-gray-700 w-24">Type</th>
+                <th className="text-left p-4 font-semibold text-gray-700 w-24">Category</th>
+                <th className="text-left p-4 font-semibold text-gray-700 w-20">State</th>
                 <th className="text-left p-4 font-semibold text-gray-700">Counterparty</th>
-                <th className="text-left p-4 font-semibold text-gray-700">Contract Type</th>   
+                <th className="text-left p-4 font-semibold text-gray-700 w-28">Contract Type</th>   
                 <th className="text-left p-4 font-semibold text-gray-700">Ave. Annual Volume</th>              
                 <th className="text-left p-4 font-semibold text-gray-700">Ave. Pricing</th>
                 <th className="text-left p-4 font-semibold text-gray-700">Period</th>
-                <th className="text-left p-4 font-semibold text-gray-700">Status</th>
-                <th className="text-left p-4 font-semibold text-gray-700 w-20">Actions</th>
+                <th className="text-left p-4 font-semibold text-gray-700 w-24">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -595,6 +595,28 @@ export default function ContractList({
                         : ''
                     }`}
                   >
+                    <td className="p-4">
+                      <div className="flex flex-col gap-1">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onEditContract(contract);
+                          }}
+                          className="bg-blue-500 text-white px-2 py-1 rounded text-xs font-medium hover:bg-blue-600 transition-colors"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDeleteClick(contract);
+                          }}
+                          className="bg-red-500 text-white px-2 py-1 rounded text-xs font-medium hover:bg-red-600 transition-colors"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
                     <td className="p-4">
                       <div className="flex items-center gap-2">
                         <div className={`w-2 h-2 rounded-full ${contract.status === 'active' ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
@@ -658,28 +680,6 @@ export default function ContractList({
                       <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusColor(contract.status)}`}>
                         {contract.status}
                       </span>
-                    </td>
-                    <td className="p-4">
-                      <div className="flex flex-col gap-1">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            onEditContract(contract);
-                          }}
-                          className="bg-blue-500 text-white px-2 py-1 rounded text-xs font-medium hover:bg-blue-600 transition-colors"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleDeleteClick(contract);
-                          }}
-                          className="bg-red-500 text-white px-2 py-1 rounded text-xs font-medium hover:bg-red-600 transition-colors"
-                        >
-                          Delete
-                        </button>
-                      </div>
                     </td>
                   </tr>
                 );
